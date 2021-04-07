@@ -1,0 +1,13 @@
+INSERT INTO nadkategorija (ime, opis) VALUES ('Akvaristika', 'živali, ki živijo v akvarijih');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Glodalci', 'radi glodajo');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Mačke', '');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Psi', 'najboljši prijatelji');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Ptice', 'imajo krila');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Teraristika, ekostične živali', 'živali, ki živijo v terarijih in eksotične živali');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Drobnica', 'ovce in koze');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Goveda', '');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Konji', '');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Kunci', 'imajo dolga ušesa in niso zajci');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Osli', '');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Perutnina', 'imajo perje');
+INSERT INTO nadkategorija (ime, opis) VALUES ('Prašiči', '');
