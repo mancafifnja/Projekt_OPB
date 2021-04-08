@@ -8,40 +8,47 @@ Ideja za aplikacijo vključuje dodajanje novih uporabnikov in oglasov.
 Baza združuje 5 tabel.
 
 1. Živali = v tej tabeli so predstavljeni oglasi vseh živali
-  - id = šifra oglasa
-  - oglas = naslov oglasa
-  - pasma
-  - kategorija = ID kategorije
-  - spol
-  - cena
-  - starost
-  - število_nog
-  - opis = ali oglas vsebuje opis?
-  - slika = ali oglas vsebuje sliko?
-  - datum = datum objave oglasa
-  - prodajalec = uporabnik
-  - kraj = kraj prodaje ni nujno enak kraju uporabnika
-  - nadkategorija
+
+- id = šifra oglasa
+- oglas = naslov oglasa
+- pasma
+- kategorija = ID kategorije
+- spol
+- cena
+- starost
+- število_nog
+- opis = ali oglas vsebuje opis?
+- slika = ali oglas vsebuje sliko?
+- datum = datum objave oglasa
+- prodajalec = uporabnik
+- kraj = kraj prodaje ni nujno enak kraju uporabnika
+- nadkategorija
 
 2. Uporabniki = v tej tabeli so predstavljeni podatki o uporabnikih
-  - ime = uporabniško ime
-  - telefon = telefonska številka
-  - datum = datum pridružitve
-  - kraj
-  - regija
+
+- ime = uporabniško ime
+- telefon = telefonska številka
+- datum = datum pridružitve
+- kraj
+- regija
 
 3. Kraj
-  - kraj
-  - posta = poštna številka
-  - regija
-  - država
+
+- kraj
+- posta = poštna številka
+- regija
+- država
 
 4. Kategorija
-  - id
-  - ime
-  - nadkategorija
-  - opis
+
+- id
+- ime
+- nadkategorija
+- opis
 
 5. Nadkategorija
-  - ime
-  - opis
+
+- ime
+- opis
+
+![Shema podatkovne baze](/Shema.png)
