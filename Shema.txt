@@ -1,0 +1,54 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+Table Uporabnik {
+  ime text [pk]
+  telefon text
+  geslo text
+  datum timestamp
+  kraj text
+}
+
+Table Kraj {
+  kraj text [pk]
+  posta int
+  regija int
+  drzava text
+}
+
+Table Nadkategorija {
+  ime text [pk]
+  opis text
+}
+
+Table Kategorija {
+  id int [pk, increment] 
+  ime text
+  opis text
+  nadkategorija text
+}
+
+Table Zivali {
+  id int [pk, increment] 
+  oglas text
+  pasma text
+  kategorija int
+  spol text
+  cena text
+  starost text
+  stevilo_nog int
+  opis text
+  slika text
+  datum text
+  prodajalec text
+  kraj text
+}
+
+
+Ref: Uporabnik.kraj > Kraj.kraj
+Ref: Kategorija.nadkategorija > Nadkategorija.ime
+Ref: Zivali.kategorija > Kategorija.id
+Ref: Zivali.kraj > Kraj.kraj
+Ref: Zivali.prodajalec > Uporabnik.ime
+
