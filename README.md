@@ -22,7 +22,6 @@ Baza združuje 5 tabel.
 - datum = datum objave oglasa
 - prodajalec = uporabnik
 - kraj = kraj prodaje ni nujno enak kraju uporabnika
-- nadkategorija
 
 2. Uporabniki = v tej tabeli so predstavljeni podatki o uporabnikih
 
@@ -30,7 +29,6 @@ Baza združuje 5 tabel.
 - telefon = telefonska številka
 - datum = datum pridružitve
 - kraj
-- regija
 
 3. Kraj
 
