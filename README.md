@@ -3,7 +3,7 @@
 Za projekt sva izbrala vspostavitev baze z živalmi, ki so na prodaj. Podatke za bazo sva našla na spletni platformi Bolha.com.
 Ideja za aplikacijo vključuje dodajanje novih uporabnikov in oglasov.
 
-# Zgradba baze
+# Zgradba podatkovne baze
 
 Baza združuje 5 tabel.
 
@@ -50,5 +50,7 @@ Baza združuje 5 tabel.
 
 - ime
 - opis
+
+# Shema podatkovne baze
 
 ![Shema podatkovne baze](/Shema.png)
