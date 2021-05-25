@@ -1,0 +1,42 @@
+CREATE TABLE nadkategorija (
+id_nadkategorija SERIAL PRIMARY KEY,
+ime TEXT NOT NULL UNIQUE,
+opis TEXT);
+
+CREATE TABLE kategorija (
+id_kategorija SERIAL PRIMARY KEY,
+ime TEXT NOT NULL UNIQUE,
+nadkategorija INTEGER NOT NULL REFERENCES nadkategorija(id_nadkategorija),
+opis TEXT);
+
+CREATE TABLE kraj (
+id_kraj SERIAL PRIMARY KEY,
+kraj TEXT NOT NULL UNIQUE,
+pošta INTEGER NOT NULL UNIQUE,
+regija TEXT NOT NULL,
+država TEXT NOT NULL);
+
+CREATE TABLE uporabniki (
+id_uporabnik SERIAL PRIMARY KEY,
+uporabniško_ime TEXT NOT NULL UNIQUE,
+telefon TEXT,
+datum DATE NOT NULL DEFAULT now(),
+kraj INTEGER NOT NULL REFERENCES kraj(id_kraj),
+geslo TEXT NOT NULL
+);
+
+CREATE TABLE živali (
+id_živali SERIAL PRIMARY KEY,
+oglas TEXT NOT NULL,
+pasma TEXT,
+kategorija INTEGER NOT NULL REFERENCES kategorija(id_kategorija),
+spol TEXT,
+cena TEXT NOT NULL,
+starost TEXT,
+število_nog INTEGER NOT NULL,
+opis TEXT NOT NULL,
+slika TEXT NOT NULL,
+datum DATE NOT NULL DEFAULT now(),
+prodajalec INTEGER NOT NULL REFERENCES uporabnik(id_uporabnik),
+kraj INTEGER NOT NULL REFERENCES kraj(id_kraj)
+)

@@ -6,7 +6,7 @@ for f in existing_files:
     if f.split('.')[1] == 'txt':
         os.remove(f)
 
-wb = xlrd.open_workbook("../Baza_Projekt.xlsx")
+wb = xlrd.open_workbook("../Baza_Projekt.xls")
 
 zivali = wb.sheet_by_index(0)
 uporabniki = wb.sheet_by_index(1)
@@ -17,20 +17,25 @@ kraj = wb.sheet_by_index(4)
 print('----------------------------------------------------------------------')
 print('Tabela KRAJ')
 
+kraj_dict = dict()
+
 with open('kraj.txt', 'a') as the_file:    
 
     for i in range(kraj.nrows):
         values = ''
         
+        if i > 0:
+            kraj_dict[str(kraj.cell_value(i, 1))] = int(kraj.cell_value(i, 0))
+        
         for j in range(kraj.ncols):
             
             if i == 0:
-                values = values + str(kraj.cell_value(i, j))        
-            elif j == 1:
+                values = values + str(kraj.cell_value(i, j))   
+            elif j in [0, 2]:
                 values = values + str(int(kraj.cell_value(i, j)))
             else:
                 values = values + "'" + str(kraj.cell_value(i, j)) + "'"
-                
+
             if j < kraj.ncols - 1:
                 values = values + ", "
         
@@ -39,19 +44,27 @@ with open('kraj.txt', 'a') as the_file:
         else:
             the_file.write("INSERT INTO kraj ("+variables+") VALUES ("+values+");\n")
     #        print("INSERT INTO kraj ("+variables+") VALUES ("+values+");")
+
     
 print('----------------------------------------------------------------------')
 print('Tabela NADKATEGORIJA')
+
+nadkategorija_dict = dict()
 
 with open('nadkategorija.txt', 'a') as the_file:    
 
     for i in range(nadkategorija.nrows):
         values = ''
+
+        if i > 0:
+            nadkategorija_dict[str(nadkategorija.cell_value(i, 1))] = int(nadkategorija.cell_value(i, 0))
         
         for j in range(nadkategorija.ncols):
             
             if i == 0:
-                values = values + str(nadkategorija.cell_value(i, j))        
+                values = values + str(nadkategorija.cell_value(i, j))   
+            elif j == 0:
+                values  = values + str(int(nadkategorija.cell_value(i,j)))
             else:
                 values = values + "'" + str(nadkategorija.cell_value(i, j)) + "'"
                 
@@ -67,6 +80,8 @@ with open('nadkategorija.txt', 'a') as the_file:
 print('----------------------------------------------------------------------')
 print('Tabela KATEGORIJA')
 
+kategorija_dict = dict()
+
 with open('kategorija.txt', 'a') as the_file:    
 
     for i in range(kategorija.nrows):
@@ -74,10 +89,15 @@ with open('kategorija.txt', 'a') as the_file:
         
         for j in range(kategorija.ncols):
             
+            if i > 0:
+                kategorija_dict[str(kategorija.cell_value(i, 1))] =  int(kategorija.cell_value(i, 0))
+ 
             if i == 0:
                 values = values + str(kategorija.cell_value(i, j))   
             elif j == 0:
                 values = values + str(int(kategorija.cell_value(i, j)))
+            elif j == 2:
+                values = values + str(nadkategorija_dict[kategorija.cell_value(i, j)])
             else:
                 values = values + "'" + str(kategorija.cell_value(i, j)) + "'"
                 
@@ -93,6 +113,8 @@ with open('kategorija.txt', 'a') as the_file:
 print('----------------------------------------------------------------------')
 print('Tabela UPORABNIKI')
 
+uporabniki_dict = dict()
+
 with open('uporabniki.txt', 'a') as the_file:    
 
     for i in range(uporabniki.nrows):
@@ -100,11 +122,18 @@ with open('uporabniki.txt', 'a') as the_file:
         
         for j in range(uporabniki.ncols):
             
+            if i > 0:
+                uporabniki_dict[str(uporabniki.cell_value(i, 1))] =  int(uporabniki.cell_value(i, 0))
+            
             if i == 0:
                 values = values + str(uporabniki.cell_value(i, j))   
-            elif j == 2:
+            elif j == 3:
                 d,m,y = uporabniki.cell_value(i, j).split('.')
                 values = values + "'" + d + "-" + m + "-" + y + "'"
+            elif j == 0:
+                values = values + str(int(uporabniki.cell_value(i, j)))
+            elif j == 4:
+                values = values + str(kraj_dict[uporabniki.cell_value(i, j)])
             else:
                 values = values + "'" + str(uporabniki.cell_value(i, j)) + "'"
                 
@@ -127,7 +156,7 @@ with open('zivali.txt', 'a') as the_file:
         
         if zivali.cell_value(i, 0) == '':
             continue
-        
+
         for j in range(zivali.ncols):
             
             if i == 0:
@@ -137,6 +166,10 @@ with open('zivali.txt', 'a') as the_file:
             elif j == 10:
                 d,m,y = zivali.cell_value(i, j).split('.')
                 values = values + "'" + d + "-" + m + "-" + y + "'"
+            elif j == 11:
+                values = values + str(uporabniki_dict[str(zivali.cell_value(i, j))])
+            elif j == 12:
+                values = values + str(kraj_dict[zivali.cell_value(i, j)])
             else:
                 values = values + "'" + str(zivali.cell_value(i, j)) + "'"
                 
