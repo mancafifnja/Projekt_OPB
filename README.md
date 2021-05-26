@@ -9,43 +9,45 @@ Baza združuje 5 tabel.
 
 1. Živali = v tej tabeli so predstavljeni oglasi vseh živali
 
-- id = šifra oglasa
+- ID živali = šifra oglasa
 - oglas = naslov oglasa
 - pasma
 - kategorija = ID kategorije
 - spol
 - cena
 - starost
-- število_nog
-- opis = ali oglas vsebuje opis?
-- slika = ali oglas vsebuje sliko?
+- število_nog = številka med 0 in 10
+- opis
+- slika = link do slike
 - datum = datum objave oglasa
-- prodajalec = uporabnik
-- kraj = kraj prodaje ni nujno enak kraju uporabnika
+- prodajalec = ID uporabnika
+- kraj = ID kraj (kraj prodaje ni nujno enak kraju prodajalca)
 
 2. Uporabniki = v tej tabeli so predstavljeni podatki o uporabnikih
 
+- ID uporabnika
 - ime = uporabniško ime
-- telefon = telefonska številka
+- telefon
 - datum = datum pridružitve
-- kraj
+- kraj = ID kraj
 
 3. Kraj
 
+- ID kraj
 - kraj
 - posta = poštna številka
-- regija
 - država
 
 4. Kategorija
 
-- id
+- ID kategorija
 - ime
-- nadkategorija
+- nadkategorija = ID kategorija
 - opis
 
 5. Nadkategorija
 
+- ID kategorija
 - ime
 - opis
 
