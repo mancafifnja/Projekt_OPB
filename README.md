@@ -53,4 +53,4 @@ Baza združuje 5 tabel.
 
 # Shema podatkovne baze
 
-![Shema podatkovne baze](/Shema.png)
+![Shema podatkovne baze](/Zgradba baze/Shema.png)
