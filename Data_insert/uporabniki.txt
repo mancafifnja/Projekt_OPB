@@ -1,9 +1,9 @@
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (1, 'denisboto', '+386 69 732 315', '26-3-2021', 124, 'njksdu');
-INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (2, 'sailor55', '', '4-10-2015', 190, 'pops');
-INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (3, 'uklopko', '', '31-3-2014', 301, 'kskla');
+INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (2, 'sailor55', NULL, '4-10-2015', 190, 'pops');
+INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (3, 'uklopko', NULL, '31-3-2014', 301, 'kskla');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (4, 'm_a_t_jaz', '+386 41 558 877', '1-10-2012', 312, '4562.0');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (5, 'bolhice2', '+386 51 266 336', '6-3-2011', 179, 'eiojjjjj');
-INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (6, 'lepi1981', '', '20-6-2017', 431, 'banana');
+INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (6, 'lepi1981', NULL, '20-6-2017', 431, 'banana');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (7, 'tone961', '041 641 240', '30-10-2015', 124, 'èokolada');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (8, 'daisy87', '+386 41 205 642', '2-7-2010', 225, 'euijs');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (9, 'compx', '041 903 189', '18-11-2007', 218, 'njkl');
@@ -31,7 +31,7 @@ INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, ges
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (31, 'topmaltese', '041 760 095', '11-8-2015', 38, '264564456as');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (32, 'donna999', '+386 41 454 266', '13-2-2010', 190, '156156156g156tg');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (33, 'debimartin', '+386 31 749 664', '14-5-2009', 448, '156464trhtj');
-INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (34, 'darjax', '', '28-2-2006', 121, '153456fgssfsdd');
+INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (34, 'darjax', NULL, '28-2-2006', 121, '153456fgssfsdd');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (35, 'kasko2', '040 818 992', '8-1-2007', 463, '5153sdgs1g53');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (36, 'race_man', '+386 40 745 224', '15-10-2019', 180, '5g15sfg5sg53');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (37, 'coce77', '+386 22 284 978', '5-5-2014', 139, 'dg2sg2sg23');
@@ -40,10 +40,10 @@ INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, ges
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (40, 'marulek', '+386 40 360 860', '28-1-2001', 119, 'ydc2c');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (41, 'Tiga223', '+386 51 423 983', '26-1-2020', 38, 'ae86sdf4');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (42, 'mglaze', '051 666 056', '8-11-2018', 110, 'vsdv');
-INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (43, 'navi2', '', '14-5-2005', 390, 'cd456sdf');
-INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (44, 'bostonlove', '', '9-1-2017', 99, 'f456df456df');
+INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (43, 'navi2', NULL, '14-5-2005', 390, 'cd456sdf');
+INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (44, 'bostonlove', NULL, '9-1-2017', 99, 'f456df456df');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (45, 'Dragoon', '+386 70 302 282', '26-3-2021', 190, 'f56af46dfžas123');
-INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (46, 'mojjure', '', '18-7-2013', 246, 'c153xc453ð');
+INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (46, 'mojjure', NULL, '18-7-2013', 246, 'c153xc453ð');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (47, 'tolarb', '+386 31 784 447', '4-9-2016', 474, 'sdf4');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (48, 'tassnerdrago', '041 841 459', '19-8-2013', 60, '123yd');
 INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, datum, kraj, geslo) VALUES (49, 'tunbergija', '041 343 048', '23-8-2010', 140, '155fsdfsd');

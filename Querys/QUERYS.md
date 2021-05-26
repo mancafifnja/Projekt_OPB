@@ -41,7 +41,7 @@ Pri dodajanju novega oglasa/živali je potrebno podati:
 - naslov oglasa
 - kategorijo (iz nabora kategorij)
 - ceno
-- število nog (številka med 1 in 10)
+- število nog (številka med 0 in 10)
 - uporabniško ime prodajalca
 - kraj
 

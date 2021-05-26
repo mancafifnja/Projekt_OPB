@@ -1,13 +1,13 @@
 INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (1, 'Akvaristika', 'živali, ki živijo v akvarijih');
 INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (2, 'Glodalci', 'radi glodajo');
-INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (3, 'Maèke', '');
+INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (3, 'Maèke', NULL);
 INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (4, 'Psi', 'najboljši prijatelji');
 INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (5, 'Ptice', 'imajo krila');
 INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (6, 'Teraristika, ekostiène živali', 'živali, ki živijo v terarijih in eksotiène živali');
 INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (7, 'Drobnica', 'ovce in koze');
-INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (8, 'Goveda', '');
-INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (9, 'Konji', '');
+INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (8, 'Goveda', NULL);
+INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (9, 'Konji', NULL);
 INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (10, 'Kunci', 'imajo dolga ušesa in niso zajci');
-INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (11, 'Osli', '');
+INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (11, 'Osli', NULL);
 INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (12, 'Perutnina', 'imajo perje');
-INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (13, 'Prašièi', '');
+INSERT INTO nadkategorija (id_nadkategorija, ime, opis) VALUES (13, 'Prašièi', NULL);

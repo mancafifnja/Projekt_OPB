@@ -66,7 +66,10 @@ with open('nadkategorija.txt', 'a') as the_file:
             elif j == 0:
                 values  = values + str(int(nadkategorija.cell_value(i,j)))
             else:
-                values = values + "'" + str(nadkategorija.cell_value(i, j)) + "'"
+                if str(nadkategorija.cell_value(i, j)) == '':
+                    values = values + "NULL"
+                else:
+                    values = values + "'" + str(nadkategorija.cell_value(i, j)) + "'"
                 
             if j < nadkategorija.ncols - 1:
                 values = values + ", "
@@ -99,8 +102,11 @@ with open('kategorija.txt', 'a') as the_file:
             elif j == 2:
                 values = values + str(nadkategorija_dict[kategorija.cell_value(i, j)])
             else:
-                values = values + "'" + str(kategorija.cell_value(i, j)) + "'"
-                
+                if str(kategorija.cell_value(i, j)) == '':
+                    values = values + "NULL"
+                else:
+                    values = values + "'" + str(kategorija.cell_value(i, j)) + "'"
+                    
             if j < kategorija.ncols - 1:
                 values = values + ", "
         
@@ -135,7 +141,10 @@ with open('uporabniki.txt', 'a') as the_file:
             elif j == 4:
                 values = values + str(kraj_dict[uporabniki.cell_value(i, j)])
             else:
-                values = values + "'" + str(uporabniki.cell_value(i, j)) + "'"
+                if str(uporabniki.cell_value(i, j)) == '':
+                    values = values + "NULL"
+                else:
+                    values = values + "'" + str(uporabniki.cell_value(i, j)) + "'"
                 
             if j < uporabniki.ncols - 1:
                 values = values + ", "
@@ -171,7 +180,10 @@ with open('zivali.txt', 'a') as the_file:
             elif j == 12:
                 values = values + str(kraj_dict[zivali.cell_value(i, j)])
             else:
-                values = values + "'" + str(zivali.cell_value(i, j)) + "'"
+                if str(zivali.cell_value(i, j)) == '':
+                    values = values + "NULL"
+                else:
+                    values = values + "'" + str(zivali.cell_value(i, j)) + "'"
                 
             if j < zivali.ncols - 1:
                 values = values + ", "
