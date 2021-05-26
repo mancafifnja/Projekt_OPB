@@ -34,9 +34,9 @@ spol TEXT,
 cena TEXT NOT NULL,
 starost TEXT,
 število_nog INTEGER NOT NULL,
-opis TEXT NOT NULL,
-slika TEXT NOT NULL,
+opis TEXT,
+slika TEXT,
 datum DATE NOT NULL DEFAULT now(),
-prodajalec INTEGER NOT NULL REFERENCES uporabnik(id_uporabnik),
+prodajalec INTEGER NOT NULL REFERENCES uporabniki(id_uporabnik),
 kraj INTEGER NOT NULL REFERENCES kraj(id_kraj)
 )
