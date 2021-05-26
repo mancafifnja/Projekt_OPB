@@ -3,6 +3,7 @@ export default async function onCreateUser(req, res) {
 	try {
 		console.log("Request on create user: " + JSON.stringify(req.body))
 
+		const [results, metadata] = await db.query("UPDATE users SET y = 42 WHERE x = 12");
 
 		// var user = await db.Users.create({
 		// 	email: req.body.email,
@@ -20,6 +21,8 @@ export default async function onCreateUser(req, res) {
 		// 	console.log("Failed to create user")
 		// 	res.status(400).send("Invalid username or password")
 		// }
+
+
 
 		res.status(200).send({ name: req.body.name })
 	} catch (e) {

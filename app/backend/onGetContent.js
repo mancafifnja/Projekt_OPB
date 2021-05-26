@@ -22,8 +22,6 @@ export default async function (req, res) {
 				price: 14314.4,
 				location: "Nalov2"
 			},
-
-
 		])
 
 
