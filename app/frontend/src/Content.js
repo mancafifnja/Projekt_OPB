@@ -15,7 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link as LinkRoute, useHistory } from "react-router-dom"
 import axios from "axios"
-import { DialogContent, DialogTitle, Paper } from '@material-ui/core';
+import { DialogContent, DialogTitle, MenuItem, Paper, Select } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import GlobalContext from "./GlobalContext.js"
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -105,8 +105,31 @@ const useStyles = makeStyles((theme) => ({
 	},
 	bbbb: {
 		marginTop: 30,
+	},
+	img:{
+		height: "100px",
+		width: "100px"
 	}
 }));
+/*
+{
+    'id_živali': 6690070,
+    oglas: 'PRODAM MLADE ZAJCE NEMŠKI LISEC',
+    pasma: 'nemški lisec',
+    kategorija: 20,
+    spol: null,
+    cena: '10€',
+    starost: '3 mesece',
+    'število_nog': 4,
+    opis: 'Zajci pasme nemški lisec',
+    slika: 'https://www.bolha.com/image-bigger/kunci/zajci-kunci-prodam-zajca-nemski-lisec-slika-6555833.jpg',
+    datum: '2021-04-01',
+    prodajalec: 83,
+    kraj: 312
+  },
+
+
+*/
 
 export default function SignUp() {
 	const classes = useStyles();
@@ -115,10 +138,47 @@ export default function SignUp() {
 	const [openContent, setOpenContent] = useState(null)
 	const global = useContext(GlobalContext)
 
+	const [places, setPlaces] = useState([]);
+	const [kategorije, setKategorije] = useState([]);
+	const [nadkategorije, setNadkategorije] = useState([]);
+
+	const [place, setPlace] = useState(null);
+	const [category, setCategory] = useState(null);
+	const [subCategory, setSubCategory] = useState(null);
+
+
+	useEffect (  ()=>{
+		axios.post("/getPlaces", {}).then((res)=>{
+			console.log(res.data);
+		  	setPlaces(res.data);
+		})
+	}, [])
+
+	useEffect (  ()=>{
+	axios.post("/getCategory", {}).then((res)=>{
+		console.log(res.data);
+		setNadkategorije(res.data);
+	})
+	}, [])
+
+	useEffect (  ()=>{
+		axios.post("/getSubcategory", { category: category}).then((res)=>{
+		  console.log(res.data);
+		  setKategorije(res.data);
+		})
+	}, [category])
+
+
+
+
 
 	const onGetContent = async () => {
 		try {
-			var res = await axios.post("/getContent", {})
+			var res = await axios.post("/getContent", {
+				place,
+				category,
+				subCategory
+			})
 			console.log(res.data)
 			setContent(res.data)
 			//history.push('/home')
@@ -144,19 +204,97 @@ export default function SignUp() {
 
 
 
-	useEffect(() => { onGetContent() }, []);
+	useEffect(() => { onGetContent() }, [ place, category, subCategory]);
+	var selectedKraj = null;
+	var selectedKategorija = null;
+	var selectedNadkategorija = null;
+
+	if(openContent && !openContent.krajObj){
+		selectedKategorija = kategorije.find(k=>{ 
+			return k.id_kategorija === openContent.kategorija
+		})
+		selectedNadkategorija = nadkategorije.find(k=>{ 
+			return k.id_nadkategorija === selectedKategorija.nadkategorija
+		})
+
+		selectedKraj = places.find(k=>{ 
+			return k.id_kraj=== openContent.kraj
+		})
+		console.log(selectedKraj)
+		console.log(selectedKategorija)
+		console.log(selectedNadkategorija)
+	}
 
 	return (
 		<Container component="div" maxWidth="md">
+			<Grid container direction="row" justify="space-around">
+				<Grid item>
+					<Typography> Kraj:</Typography>
+					<Select
+						autoWidth
+						variant="outlined"
+						displayEmpty
+						className={classes.select}
+						labelId="place-select"
+						id="place-select"
+						value={place}
+						onChange={e => { setPlace(e.target.value) }}
+						>
+						<MenuItem value={null}>Nedoločeno</MenuItem>
+						{places.map(p=>{
+							return <MenuItem value={p.id_kraj}>{ p.pošta + " " + p.kraj }</MenuItem>
+						})}
+					</Select>
+				</Grid>
+				<Grid item>
+				<Typography>Nadkategorija:</Typography>
+				<Select
+					variant="outlined"
+					displayEmpty
+					className={classes.select}
+					labelId="place-select"
+					id="place-select"
+					value={category}
+					onChange={e => { setCategory(e.target.value) }}
+					>
+					<MenuItem value={null}>Nedoločeno</MenuItem>
+					{nadkategorije.map(p=>{
+						return <MenuItem value={p.id_nadkategorija}>{ p.ime }</MenuItem>
+					})}
+        		</Select>
+				</Grid>
+				<Grid item>
+				<Typography>Kategorija:</Typography>
+				<Select
+					variant="outlined"
+					displayEmpty
+					className={classes.select}
+					labelId="place-select"
+					id="place-select"
+					value={subCategory}
+					onChange={e => { setSubCategory(e.target.value) }}
+					>
+					<MenuItem value={null}>Nedoločeno</MenuItem>
+					{kategorije.map(p=>{
+						return <MenuItem value={p.id_kategorija}>{ p.ime }</MenuItem>
+					})}
+        		</Select>
+				</Grid>
+			</Grid>
 			<List className={classes.root}>
 				{content.map(c => {
-					return <React.Fragment><ListItem alignItems="flex-start">
+					return <React.Fragment><ListItem alignItems="flex-start" button onClick={() => {
+						setOpenContent(c)
+					}}>
 
 						<Grid container spacing={3} direction="row" justify="space-between">
+							<Grid item>
+								<img alt="No Img" className={classes.img} src={c.slika}></img>
+							</Grid>
 							<Grid item >
 								<ListItemText
 									className={classes.centerbleh}
-									primary={c.name}
+									primary={c.oglas}
 									secondary={
 										<React.Fragment>
 
@@ -166,7 +304,7 @@ export default function SignUp() {
 												className={classes.inline}
 												color="textPrimary"
 											>
-												{c.type}
+												{c.pasma}
 											</Typography>
 
 										</React.Fragment>
@@ -176,7 +314,7 @@ export default function SignUp() {
 							<Grid item>
 								<ListItemText
 									className={classes.centerbleh}
-									primary={c.name}
+									primary={c.cena}
 									secondary={
 										<React.Fragment>
 
@@ -193,35 +331,7 @@ export default function SignUp() {
 									}
 								/>
 							</Grid>
-							<Grid item>
-								<ListItemText
-									className={classes.centerbleh}
-									primary={c.name}
-									secondary={
-										<React.Fragment>
 
-											<Typography
-												component="span"
-												variant="body2"
-												className={classes.inline}
-												color="textPrimary"
-											>
-												{c.price}
-											</Typography>
-
-										</React.Fragment>
-									}
-								/>
-							</Grid>
-							<Grid item>
-								<Button variant="outlined" className={classes.bbbb}
-									onClick={() => {
-										setOpenContent(c)
-									}}
-								>
-									Buy
-								</Button>
-							</Grid>
 						</Grid>
 					</ListItem>
 						<Divider />
@@ -240,16 +350,29 @@ export default function SignUp() {
 			>
 				<DialogTitle>
 
-					<Typography variant="h6"><AccountCircleIcon /> {openContent && (openContent.type + " " + openContent.subtype)}</Typography>
+					<Typography variant="h6"> {selectedKategorija && selectedNadkategorija && (selectedNadkategorija.ime + ": " + selectedKategorija.ime)}</Typography>
 					<IconButton aria-label="close" className={classes.closeButton} onClick={() => { setOpenContent(null) }}>
 						<CloseIcon />
 					</IconButton>
 				</DialogTitle>
 				<DialogContent dividers>
-					{openContent && <div>To je kontent</div>}
+					{openContent && <div>
+						<Grid container direction="column" justify="space-around">
+						<Typography variant="h5"> {openContent.oglas}</Typography>
+						<Typography> {  openContent.opis}</Typography>
+						{selectedKraj && <Typography>{
+							selectedKraj.kraj
+							}
+							</Typography>}
+						{ openContent.pasma && <Typography>{"Pasma: "+openContent.pasma}</Typography>}
+						{ openContent.spol && <Typography>{"Spol: "+openContent.spol}</Typography>}
+						{ openContent.starost && <Typography>{"Starost: "+ openContent.starost}</Typography>}
+						{ openContent["število_nog"] && <Typography>{"Število nog: "+openContent["število_nog"]}</Typography>}
+						</Grid>
+						</div>}
 					<Divider />
 					<Container maxWith="sm" className={classes.fabcont}>
-						<Fab className={classes.fab} variant="extended" onClick={() => { onBuy(openContent.id, global.context.user.name) }} variant="extended">
+						<Fab className={classes.fab} variant="extended" onClick={() => { onBuy(openContent.id_živali, global.context.user.uporabniško_ime) }} variant="extended">
 							Buy
 						</Fab>
 					</Container>

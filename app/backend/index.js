@@ -8,6 +8,9 @@ import onLogin from "./onLogin.js"
 import onCreateUser from "./onCreateUser.js"
 import onAddContent from "./onAddContent.js"
 import onGetContent from "./onGetContent.js"
+import onGetPlaces from "./onGetPlaces.js"
+import onGetCategory from './onGetCategory.js'
+import onGetSubcategory from './onGetSubcategory.js'
 import onBuy from "./onBuy.js"
 
 import onGetBalance from "./onGetBalance.js"
@@ -44,6 +47,9 @@ try {
 	app.post("/getContent", onGetContent)
 	app.post("/buy", onBuy)
 	app.post("/getBalance", onGetBalance)
+	app.post("/getPlaces", onGetPlaces)
+	app.post("/getCategory", onGetCategory)
+	app.post("/getSubcategory", onGetSubcategory)
 
 	app.listen(port, () => {
 		console.log(`Example app listening on port ${port}!`)

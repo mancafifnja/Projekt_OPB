@@ -6,30 +6,28 @@ export default async function (req, res) {
 	try {
 		console.log("Request on add content: " + JSON.stringify(req.body))
 
-		// var user = await db.Users.findOne({
-		// 	where: {
-		// 		id: req.body.creator
-		// 	}
-		// })
-		// req.body.anonymus = false; // GEt it from request
+
+		const [results, metadata] = await db.query(
+			"INSERT INTO živali (id_živali, oglas, kategorija, cena, število_nog, prodajalec, kraj, pasma, spol, starost, opis, slika) 	VALUES ((SELECT max(id_živali) FROM živali)+1,:oglas, :category,:price,:legs,:owner,:place,'ni',:spol,:starost,:opis,:image)", 		
+			{
+				replacements: req.body,
+				type: db.QueryTypes.INSERT,
+			  });
+
+		// price,
+		// oglas,
+		// opis,
+		// starost,
+		// spol,
+		// place,
+		// category,
+		// subCategory,
+		// owner: global.context.user,
+		// image
+		// legs
 
 
-		// var content = await db.Content.create({
-		// 	name: req.body.name,
-		// 	type: req.body.type,
-		// 	price: req.body.price,
-		// 	data: req.body.data,
-		// 	creator: req.body.creator,
-		// 	anonymus: req.body.anonymus,
-		// 	account: "placeholder"
-		// })
 
-		// if (content) {
-		// 	res.status(200).send("OK")
-		// } else {
-		// 	console.log("Failed to create content")
-		// 	res.status(400).send("Failed to create content")
-		// }
 		res.status(200).send("OK")
 
 	} catch (e) {

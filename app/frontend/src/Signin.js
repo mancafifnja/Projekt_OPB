@@ -53,8 +53,8 @@ export default function SignIn() {
   const classes = useStyles();
   let history = useHistory();
   const global = useContext(GlobalContext);
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("U")
+  const [password, setPassword] = useState("1")
 
   const onLogin = async () => {
     console.log("loging in with username: " + email + " and password " + password)
@@ -64,8 +64,8 @@ export default function SignIn() {
         password: password
       })
 
-      global.setContext({ user: res.data })
-      console.log(res)
+      global.setContext({ user: res.data[0] })
+      console.log(res.data[0])
       history.push('/home')
 
     } catch (e) {

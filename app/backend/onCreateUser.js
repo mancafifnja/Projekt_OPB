@@ -3,28 +3,28 @@ export default async function onCreateUser(req, res) {
 	try {
 		console.log("Request on create user: " + JSON.stringify(req.body))
 
-		const [results, metadata] = await db.query("UPDATE users SET y = 42 WHERE x = 12");
+		const [results, metadata] = await db.query("INSERT INTO uporabniki (id_uporabnik, uporabniško_ime, telefon, kraj, geslo) VALUES ( (SELECT max(id_uporabnik) FROM uporabniki)+1,:uporabniskoIme ,:telefon,:kraj,:geslo)", 
+		{
+			replacements: {
+				uporabniskoIme: req.body.username,
+				geslo: req.body.password,
+				telefon: req.body.phone,
+				kraj: req.body.place,
+			},
+			type: db.QueryTypes.INSERT,
+		  });
 
-		// var user = await db.Users.create({
-		// 	email: req.body.email,
-		// 	password: req.body.password,
-		// 	name: req.body.name,
-		// 	account: "temp",
-		// })
-		// console.log("Start creating user")
-		// var node = await createNode(req.body.name, user.dataValues.id)
-		// console.log("Stop creating user")
-		// console.log(node)
-		// if (user) {
-		// 	res.status(200).send(user)
-		// } else {
-		// 	console.log("Failed to create user")
-		// 	res.status(400).send("Invalid username or password")
-		// }
+		console.log("results")
+		console.log(results)
+		console.log("metadata")
+		console.log(metadata)
 
+		[results, metadata] = await db.query("SELECT * FROM uporabniki WHERE uporabniško_ime = '" + req.body.username + "' AND geslo = '" + req.body.password + "'");
 
 
-		res.status(200).send({ name: req.body.name })
+		  console.log(results)
+
+		res.status(200).send(results[0])
 	} catch (e) {
 		console.log("Error:")
 		console.warn(e)

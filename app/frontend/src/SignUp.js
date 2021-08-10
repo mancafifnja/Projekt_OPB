@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useMemo, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,6 +16,7 @@ import { Link as LinkRoute, useHistory } from "react-router-dom"
 import axios from "axios"
 import GlobalContext from "./GlobalContext.js"
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { MenuItem, Select } from '@material-ui/core';
 
 
 
@@ -50,16 +51,21 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  select : {
+    width: '100%',
+  }
 }));
 
 export default function SignUp() {
-  const username = "test" + Date.now()
   const classes = useStyles();
   let history = useHistory();
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
+  const [places, setPlaces] = useState([]);
+  const [place, setPlace] = useState("");
   const global = useContext(GlobalContext);
 
 
@@ -69,10 +75,12 @@ export default function SignUp() {
       var res = await axios.post("/createUser", {
         email,
         password,
-        name,
+        username : name,
+        phone,
+        place
       })
       console.log(res)
-      global.setContext({ user: res.data })
+      global.setContext({ user: res.data[0] })
       history.push('/home')
     } catch (e) {
       console.log("Error")
@@ -80,6 +88,16 @@ export default function SignUp() {
     }
     setLoading(false)
   }
+
+
+  useEffect (  ()=>{
+      axios.post("/getPlaces", {}).then((res)=>{
+        console.log(res.data);
+        setPlaces(res.data);
+      })
+    }, [])
+
+    
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -117,6 +135,35 @@ export default function SignUp() {
               value={email}
               onChange={e => { setEmail(e.target.value) }}
             />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              name="phone"
+              label="Phone"
+              type="phone"
+              id="phone"
+              autoComplete="phone"
+              value={phone}
+              onChange={e => { setPhone(e.target.value) }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+          <Select
+          variant="outlined"
+          displayEmpty
+          className={classes.select}
+          labelId="place-select"
+          id="place-select"
+          value={place}
+          onChange={e => { setPlace(e.target.value) }}
+        >
+          {places.map(p=>{
+            return <MenuItem value={p.id_kraj}>{ p.pošta + " " + p.kraj }</MenuItem>
+          })}
+        </Select>
           </Grid>
           <Grid item xs={12}>
             <TextField
