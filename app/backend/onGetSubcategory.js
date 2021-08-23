@@ -6,7 +6,7 @@ export default async function (req, res) {
 		var results = null;
 		var metadata = null;
 		if( req.body.category ){
-			[results, metadata] = await db.query("SELECT ime FROM kategorija WHERE nadkategorija = :category", {
+			[results, metadata] = await db.query("SELECT * FROM kategorija WHERE nadkategorija = :category", {
 					replacements: {
 						category: req.body.category
 					},

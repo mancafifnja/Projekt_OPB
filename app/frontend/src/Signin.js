@@ -55,6 +55,8 @@ export default function SignIn() {
   const global = useContext(GlobalContext);
   const [email, setEmail] = useState("U")
   const [password, setPassword] = useState("1")
+  const [msg, setMsg] = useState("")
+
 
   const onLogin = async () => {
     console.log("loging in with username: " + email + " and password " + password)
@@ -65,10 +67,14 @@ export default function SignIn() {
       })
 
       global.setContext({ user: res.data[0] })
+      if(res.status!=200){
+        throw res.data
+      }
       console.log(res.data[0])
       history.push('/home')
 
     } catch (e) {
+      setMsg(e)
       console.log("Error")
       console.log(e)
     }
@@ -84,6 +90,9 @@ export default function SignIn() {
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
+        </Typography>
+        <Typography variant="h7" style={{color: "red"}}>
+          {msg}
         </Typography>
         <TextField
           variant="outlined"

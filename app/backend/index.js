@@ -13,8 +13,6 @@ import onGetCategory from './onGetCategory.js'
 import onGetSubcategory from './onGetSubcategory.js'
 import onBuy from "./onBuy.js"
 
-import onGetBalance from "./onGetBalance.js"
-
 function timeout(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -46,7 +44,6 @@ try {
 	app.post("/addContent", onAddContent)
 	app.post("/getContent", onGetContent)
 	app.post("/buy", onBuy)
-	app.post("/getBalance", onGetBalance)
 	app.post("/getPlaces", onGetPlaces)
 	app.post("/getCategory", onGetCategory)
 	app.post("/getSubcategory", onGetSubcategory)

@@ -152,7 +152,7 @@ export default function Dashboard() {
             Bolha
           </Typography>
           <Typography variant="h6" className={classes.title}>
-            User name: {global.context.user.name}
+            User name: {global.context.user.uporabniško_ime}
           </Typography>
           <LinkRoute to="/singin">
             <IconButton color="secondary">

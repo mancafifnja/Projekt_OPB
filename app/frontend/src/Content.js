@@ -205,6 +205,8 @@ export default function SignUp() {
 
 
 	useEffect(() => { onGetContent() }, [ place, category, subCategory]);
+
+	
 	var selectedKraj = null;
 	var selectedKategorija = null;
 	var selectedNadkategorija = null;
@@ -272,7 +274,8 @@ export default function SignUp() {
 					labelId="place-select"
 					id="place-select"
 					value={subCategory}
-					onChange={e => { setSubCategory(e.target.value) }}
+					onChange={e => { setSubCategory(e.target.value); 
+					console.log(e.target.value) }}
 					>
 					<MenuItem value={null}>Nedoločeno</MenuItem>
 					{kategorije.map(p=>{

@@ -54,6 +54,7 @@ export default function SignUp() {
 	const [spol, setSpol] = useState("")
 	const [image, setImage] = useState("")
 	const [legs, setLegs] = useState("")
+	const [pasma, setPasma] = useState("")
 
 
 	const [places, setPlaces] = useState([]);
@@ -104,6 +105,7 @@ export default function SignUp() {
 				owner: global.context.user.id_uporabnik,
 				image,
 				legs,
+				pasma
 			})
 			console.log(res)
 			history.push('/home')
@@ -176,6 +178,17 @@ export default function SignUp() {
 							name="Spol"
 							value={spol}
 							onChange={e => { setSpol(e.target.value) }}
+						/>
+					</Grid>
+					<Grid item xs={4}>
+						<TextField
+							variant="outlined"
+							fullWidth
+							id="Pasma"
+							label="Pasma"
+							name="Pasma"
+							value={pasma}
+							onChange={e => { setPasma(e.target.value) }}
 						/>
 					</Grid>
 					<Grid item xs={4}>

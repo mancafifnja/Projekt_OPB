@@ -10,6 +10,10 @@ export default async function (req, res) {
 		console.log(results)
 		console.log("metadata")
 		console.log(metadata)
+		if(results.length==0){
+			res.status(202).send("Invalid username or password.")
+
+		} 
 
 		res.status(200).send(results)
 
