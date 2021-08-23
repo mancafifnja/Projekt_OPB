@@ -20,8 +20,11 @@ function timeout(ms) {
 console.log(process.env)
 
 const app = express();
-const port = 8000;
+const port = 8765;
 try {
+
+	app.use("/public", express.static("../frontend/public"));
+	app.use("/static", express.static("../frontend/build/static"));
 
 
 
@@ -35,8 +38,9 @@ try {
 
 	app.use(BodyParser.json())
 
+
 	app.get('/', (req, res) => {
-		res.send('Hello World!')
+		res.sendFile("/root/OPB/Zivali-bolha.com/app/frontend/build/index.html")
 	});
 
 	app.post("/login", onLogin)

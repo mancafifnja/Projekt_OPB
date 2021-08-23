@@ -67,16 +67,16 @@ export default function SignIn() {
       })
 
       global.setContext({ user: res.data[0] })
-      if(res.status!=200){
+      if (res.status != 200) {
         throw res.data
-      }
+      } console.log(res.data[1])
       console.log(res.data[0])
       history.push('/home')
 
     } catch (e) {
-      setMsg(e)
       console.log("Error")
       console.log(e)
+      setMsg(e)
     }
   }
 
@@ -91,7 +91,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Typography variant="h7" style={{color: "red"}}>
+        <Typography variant="h7" style={{ color: "red" }}>
           {msg}
         </Typography>
         <TextField
@@ -135,10 +135,10 @@ export default function SignIn() {
           onClick={onLogin}
         >
           Sign In
-          </Button>
+        </Button>
         <Grid container>
           <Grid item xs>
-            <LinkRoute to="/forgetpassword">
+            <LinkRoute to="/forgetpassword" disabled>
               Forgot password?
             </LinkRoute>
           </Grid>

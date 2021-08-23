@@ -36,7 +36,7 @@ function Copyright() {
 			{'Copyright © '}
 			<Link color="inherit" href="https://material-ui.com/">
 				Your Website
-      </Link>{' '}
+			</Link>{' '}
 			{new Date().getFullYear()}
 			{'.'}
 		</Typography>
@@ -106,26 +106,37 @@ const useStyles = makeStyles((theme) => ({
 	bbbb: {
 		marginTop: 30,
 	},
-	img:{
-		height: "100px",
-		width: "100px"
+	img: {
+		display: "block",
+		"max-width": "100px",
+		"max-height": "100px",
+		width: "auto",
+		height: "auto",
+	},
+	imgBig: {
+		display: "block",
+		"max-width": "800px",
+		"max-height": "500px",
+		width: "auto",
+		height: "auto",
+		padding: "20px",
 	}
 }));
 /*
 {
-    'id_živali': 6690070,
-    oglas: 'PRODAM MLADE ZAJCE NEMŠKI LISEC',
-    pasma: 'nemški lisec',
-    kategorija: 20,
-    spol: null,
-    cena: '10€',
-    starost: '3 mesece',
-    'število_nog': 4,
-    opis: 'Zajci pasme nemški lisec',
-    slika: 'https://www.bolha.com/image-bigger/kunci/zajci-kunci-prodam-zajca-nemski-lisec-slika-6555833.jpg',
-    datum: '2021-04-01',
-    prodajalec: 83,
-    kraj: 312
+	'id_živali': 6690070,
+	oglas: 'PRODAM MLADE ZAJCE NEMŠKI LISEC',
+	pasma: 'nemški lisec',
+	kategorija: 20,
+	spol: null,
+	cena: '10€',
+	starost: '3 mesece',
+	'število_nog': 4,
+	opis: 'Zajci pasme nemški lisec',
+	slika: 'https://www.bolha.com/image-bigger/kunci/zajci-kunci-prodam-zajca-nemski-lisec-slika-6555833.jpg',
+	datum: '2021-04-01',
+	prodajalec: 83,
+	kraj: 312
   },
 
 
@@ -147,24 +158,24 @@ export default function SignUp() {
 	const [subCategory, setSubCategory] = useState(null);
 
 
-	useEffect (  ()=>{
-		axios.post("/getPlaces", {}).then((res)=>{
+	useEffect(() => {
+		axios.post("/getPlaces", {}).then((res) => {
 			console.log(res.data);
-		  	setPlaces(res.data);
+			setPlaces(res.data);
 		})
 	}, [])
 
-	useEffect (  ()=>{
-	axios.post("/getCategory", {}).then((res)=>{
-		console.log(res.data);
-		setNadkategorije(res.data);
-	})
+	useEffect(() => {
+		axios.post("/getCategory", {}).then((res) => {
+			console.log(res.data);
+			setNadkategorije(res.data);
+		})
 	}, [])
 
-	useEffect (  ()=>{
-		axios.post("/getSubcategory", { category: category}).then((res)=>{
-		  console.log(res.data);
-		  setKategorije(res.data);
+	useEffect(() => {
+		axios.post("/getSubcategory", { category: category }).then((res) => {
+			console.log(res.data);
+			setKategorije(res.data);
 		})
 	}, [category])
 
@@ -204,23 +215,23 @@ export default function SignUp() {
 
 
 
-	useEffect(() => { onGetContent() }, [ place, category, subCategory]);
+	useEffect(() => { onGetContent() }, [place, category, subCategory]);
 
-	
+
 	var selectedKraj = null;
 	var selectedKategorija = null;
 	var selectedNadkategorija = null;
 
-	if(openContent && !openContent.krajObj){
-		selectedKategorija = kategorije.find(k=>{ 
+	if (openContent && !openContent.krajObj) {
+		selectedKategorija = kategorije.find(k => {
 			return k.id_kategorija === openContent.kategorija
 		})
-		selectedNadkategorija = nadkategorije.find(k=>{ 
+		selectedNadkategorija = nadkategorije.find(k => {
 			return k.id_nadkategorija === selectedKategorija.nadkategorija
 		})
 
-		selectedKraj = places.find(k=>{ 
-			return k.id_kraj=== openContent.kraj
+		selectedKraj = places.find(k => {
+			return k.id_kraj === openContent.kraj
 		})
 		console.log(selectedKraj)
 		console.log(selectedKategorija)
@@ -241,52 +252,55 @@ export default function SignUp() {
 						id="place-select"
 						value={place}
 						onChange={e => { setPlace(e.target.value) }}
-						>
+					>
 						<MenuItem value={null}>Nedoločeno</MenuItem>
-						{places.map(p=>{
-							return <MenuItem value={p.id_kraj}>{ p.pošta + " " + p.kraj }</MenuItem>
+						{places.map(p => {
+							return <MenuItem value={p.id_kraj}>{p.pošta + " " + p.kraj}</MenuItem>
 						})}
 					</Select>
 				</Grid>
 				<Grid item>
-				<Typography>Nadkategorija:</Typography>
-				<Select
-					variant="outlined"
-					displayEmpty
-					className={classes.select}
-					labelId="place-select"
-					id="place-select"
-					value={category}
-					onChange={e => { setCategory(e.target.value) }}
+					<Typography>Nadkategorija:</Typography>
+					<Select
+						variant="outlined"
+						displayEmpty
+						className={classes.select}
+						labelId="place-select"
+						id="place-select"
+						value={category}
+						onChange={e => { setCategory(e.target.value) }}
 					>
-					<MenuItem value={null}>Nedoločeno</MenuItem>
-					{nadkategorije.map(p=>{
-						return <MenuItem value={p.id_nadkategorija}>{ p.ime }</MenuItem>
-					})}
-        		</Select>
+						<MenuItem value={null}>Nedoločeno</MenuItem>
+						{nadkategorije.map(p => {
+							return <MenuItem value={p.id_nadkategorija}>{p.ime}</MenuItem>
+						})}
+					</Select>
 				</Grid>
 				<Grid item>
-				<Typography>Kategorija:</Typography>
-				<Select
-					variant="outlined"
-					displayEmpty
-					className={classes.select}
-					labelId="place-select"
-					id="place-select"
-					value={subCategory}
-					onChange={e => { setSubCategory(e.target.value); 
-					console.log(e.target.value) }}
+					<Typography>Kategorija:</Typography>
+					<Select
+						variant="outlined"
+						displayEmpty
+						className={classes.select}
+						labelId="place-select"
+						id="place-select"
+						value={subCategory}
+						onChange={e => {
+							setSubCategory(e.target.value);
+							console.log(e.target.value)
+						}}
 					>
-					<MenuItem value={null}>Nedoločeno</MenuItem>
-					{kategorije.map(p=>{
-						return <MenuItem value={p.id_kategorija}>{ p.ime }</MenuItem>
-					})}
-        		</Select>
+						<MenuItem value={null}>Nedoločeno</MenuItem>
+						{kategorije.map(p => {
+							return <MenuItem value={p.id_kategorija}>{p.ime}</MenuItem>
+						})}
+					</Select>
 				</Grid>
 			</Grid>
 			<List className={classes.root}>
 				{content.map(c => {
 					return <React.Fragment><ListItem alignItems="flex-start" button onClick={() => {
+						console.log(c)
 						setOpenContent(c)
 					}}>
 
@@ -347,8 +361,8 @@ export default function SignUp() {
 				onClose={() => {
 					setOpenContent(null)
 				}}
-				fullWidth={true}
-				maxWidth="sm"
+				//fullWidth={true}
+				maxWidth="md"
 				className={classes.concentdialog}
 			>
 				<DialogTitle>
@@ -360,19 +374,26 @@ export default function SignUp() {
 				</DialogTitle>
 				<DialogContent dividers>
 					{openContent && <div>
-						<Grid container direction="column" justify="space-around">
-						<Typography variant="h5"> {openContent.oglas}</Typography>
-						<Typography> {  openContent.opis}</Typography>
-						{selectedKraj && <Typography>{
-							selectedKraj.kraj
-							}
-							</Typography>}
-						{ openContent.pasma && <Typography>{"Pasma: "+openContent.pasma}</Typography>}
-						{ openContent.spol && <Typography>{"Spol: "+openContent.spol}</Typography>}
-						{ openContent.starost && <Typography>{"Starost: "+ openContent.starost}</Typography>}
-						{ openContent["število_nog"] && <Typography>{"Število nog: "+openContent["število_nog"]}</Typography>}
+						<Grid container direction="column">
+							<Grid item>
+								<img alt="No Img" className={classes.imgBig} src={openContent.slika}></img>
+							</Grid>
+							<Grid item>
+								<Grid container direction="column" justify="space-around">
+									<Typography variant="h5"> {openContent.oglas}</Typography>
+									<Typography> {openContent.opis}</Typography>
+									{selectedKraj && <Typography>{
+										selectedKraj.kraj
+									}
+									</Typography>}
+									{(openContent.pasma != null || openContent.pasma != "") && <Typography>{"Pasma: " + openContent.pasma}</Typography>}
+									{openContent.spol != null && <Typography>{"Spol: " + openContent.spol}</Typography>}
+									{openContent.število_nog != null && <Typography>{"Število nog: " + openContent.število_nog}</Typography>}
+									{openContent.starost != null && <Typography>{"Starost: " + openContent.starost}</Typography>}
+								</Grid>
+							</Grid>
 						</Grid>
-						</div>}
+					</div>}
 					<Divider />
 					<Container maxWith="sm" className={classes.fabcont}>
 						<Fab className={classes.fab} variant="extended" onClick={() => { onBuy(openContent.id_živali, global.context.user.uporabniško_ime) }} variant="extended">

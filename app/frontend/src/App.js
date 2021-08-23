@@ -5,6 +5,7 @@ import Singup from "./SignUp.js"
 import Singin from "./Signin.js"
 import DashbordAdd from "./DashboardAdd.js"
 import DashbordContent from "./DashboardContent"
+import ForgotPassword from './ForgetPassword';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom"
 import GlobalContext from "./GlobalContext.js"
 
@@ -24,6 +25,7 @@ function App() {
             <Route path='/singup' component={Singup} />
             <Route path='/home' component={DashbordContent} />
             <Route path='/add' component={DashbordAdd} />
+            <Route path='/forgetpassword' component={ForgotPassword} />
           </Switch>
           <Redirect to="/singin" />
         </Router>
