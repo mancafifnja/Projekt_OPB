@@ -15,7 +15,7 @@ export default async function (req, res) {
 		} else {
 			[results, metadata] = await db.query("SELECT * FROM kategorija");
 		}
-		console.log(results)
+		// console.log(results)
 
 		res.status(200).send(results)
 

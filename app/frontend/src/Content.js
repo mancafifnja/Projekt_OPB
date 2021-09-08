@@ -131,7 +131,7 @@ const useStyles = makeStyles((theme) => ({
 
 */
 
-export default function SignUp() {
+export default function Content( props ) {
 	const classes = useStyles();
 	let history = useHistory();
 	const [content, setContent] = useState([])
@@ -188,7 +188,7 @@ export default function SignUp() {
 		}
 	}
 
-	const onBuy = async (id, username) => {
+	const onBuy = async (id, username, reset) => {
 		try {
 			var res = await axios.post("/buy", {
 				id: id,
@@ -196,6 +196,7 @@ export default function SignUp() {
 			})
 			console.log(res.data)
 			setOpenContent(null)
+			reset();
 		} catch (e) {
 			console.log("Error")
 			console.warn(e)
@@ -375,7 +376,7 @@ export default function SignUp() {
 						</div>}
 					<Divider />
 					<Container maxWith="sm" className={classes.fabcont}>
-						<Fab className={classes.fab} variant="extended" onClick={() => { onBuy(openContent.id_živali, global.context.user.uporabniško_ime) }} variant="extended">
+						<Fab className={classes.fab} variant="extended" onClick={() => { onBuy(openContent.id_živali, global.context.user.uporabniško_ime, onGetContent) }} variant="extended">
 							Buy
 						</Fab>
 					</Container>

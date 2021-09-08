@@ -41,7 +41,7 @@ export default async function (req, res) {
 
 
 		const [results, metadata] = await db.query(query);
-		//console.log(results)
+		console.log(results)
 
 		res.status(200).send(results)
 

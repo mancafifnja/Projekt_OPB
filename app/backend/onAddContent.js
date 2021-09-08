@@ -8,7 +8,7 @@ export default async function (req, res) {
 
 
 		const [results, metadata] = await db.query(
-			"INSERT INTO živali (id_živali, oglas, kategorija, cena, število_nog, prodajalec, kraj, pasma, spol, starost, opis, slika) 	VALUES ((SELECT max(id_živali) FROM živali)+1,:oglas, :category,:price,:legs,:owner,:place,:pasma,:spol,:starost,:opis,:image)", 		
+			"INSERT INTO živali (id_živali, oglas, kategorija, cena, število_nog, prodajalec, kraj, pasma, spol, starost, opis, slika) 	VALUES ((SELECT max(id_živali) FROM živali)+1,:oglas, :subCategory,:price,:legs,:owner,:place,:pasma,:spol,:starost,:opis,:image)", 		
 			{
 				replacements: req.body,
 				type: db.QueryTypes.INSERT,

@@ -20,7 +20,7 @@ function timeout(ms) {
 console.log(process.env)
 
 const app = express();
-const port = 8000;
+const port = 8765;
 try {
 
 
@@ -36,7 +36,7 @@ try {
 	app.use(BodyParser.json())
 
 	app.get('/', (req, res) => {
-		res.send('Hello World!')
+		res.sendFile("./build/index.html")
 	});
 
 	app.post("/login", onLogin)
@@ -47,6 +47,12 @@ try {
 	app.post("/getPlaces", onGetPlaces)
 	app.post("/getCategory", onGetCategory)
 	app.post("/getSubcategory", onGetSubcategory)
+
+	app.get('/singin', function(req, res) {res.redirect('/')})
+	app.get('/singup', function(req, res) {res.redirect('/')})
+	app.get('/home', function(req, res) {res.redirect('/')})
+	app.get('/add', function(req, res) {res.redirect('/')})
+	app.get('/add', function(req, res) {res.redirect('/')})
 
 	app.listen(port, () => {
 		console.log(`Example app listening on port ${port}!`)
