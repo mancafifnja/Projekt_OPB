@@ -23,6 +23,9 @@ const app = express();
 const port = 8765;
 try {
 
+	app.use("/public", express.static("../frontend/public"));
+	app.use("/static", express.static("../frontend/build/static"));
+
 
 
 	app.use((req, res, next) => {
@@ -35,8 +38,9 @@ try {
 
 	app.use(BodyParser.json())
 
+
 	app.get('/', (req, res) => {
-		res.sendFile("./build/index.html")
+		res.sendFile("/root/OPB/Zivali-bolha.com/app/frontend/build/index.html")
 	});
 
 	app.post("/login", onLogin)
