@@ -382,6 +382,8 @@ export default function Content( props ) {
 							<Grid item>
 								<Grid container direction="column" justify="space-around">
 									<Typography variant="h5"> {openContent.oglas}</Typography>
+									{openContent.uporabniško_ime != null && <Typography>{"Prodajalec: " + openContent.uporabniško_ime}</Typography>}
+
 									<Typography> {openContent.opis}</Typography>
 									{selectedKraj && <Typography>{
 										selectedKraj.kraj
@@ -391,6 +393,8 @@ export default function Content( props ) {
 									{openContent.spol != null && <Typography>{"Spol: " + openContent.spol}</Typography>}
 									{openContent.število_nog != null && <Typography>{"Število nog: " + openContent.število_nog}</Typography>}
 									{openContent.starost != null && <Typography>{"Starost: " + openContent.starost}</Typography>}
+									{openContent.telefon != null && <Typography>{"Telefonska številka prodajalca: " + openContent.telefon}</Typography>}
+
 								</Grid>
 							</Grid>
 						</Grid>

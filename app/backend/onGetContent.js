@@ -10,11 +10,11 @@ export default async function (req, res) {
 	try {
 		console.log("Request on get contents: " + JSON.stringify(req.body))
 
-		var query = "SELECT * FROM public.živali ORDER BY id_živali DESC LIMIT 10"
+		var query = "SELECT id_živali,oglas,pasma,kategorija,spol,cena,starost,število_nog,opis,slika,živali.datum,prodajalec,id_uporabnik,uporabniško_ime,telefon FROM živali JOIN uporabniki ON živali.prodajalec = uporabniki.id_uporabnik ORDER BY id_živali DESC LIMIT 10"
 		var needsAND = false;
 
 		if( req.body.place || req.body.category || req.body.subCategory ){
-			query = "SELECT * FROM public.živali WHERE ";
+			query = "SELECT id_živali,oglas,pasma,kategorija,spol,cena,starost,število_nog,opis,slika,živali.datum,prodajalec,id_uporabnik,uporabniško_ime,telefon FROM živali JOIN uporabniki ON živali.prodajalec = uporabniki.id_uporabnik WHERE ";
 		}
 		if( req.body.place  ){
 
@@ -38,9 +38,8 @@ export default async function (req, res) {
 			}
 			query += " kategorija = '" + req.body.subCategory + "'" ;
 		}
-
-
 		const [results, metadata] = await db.query(query);
+
 		console.log(results)
 
 		res.status(200).send(results)
